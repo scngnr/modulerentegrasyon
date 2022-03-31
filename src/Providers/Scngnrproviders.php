@@ -13,7 +13,7 @@ class Scngnrproviders extends ServiceProvider
 
   public function boot()
   {
-
+ 
     /*
     *
     *-------------------------------------------------------------------------
