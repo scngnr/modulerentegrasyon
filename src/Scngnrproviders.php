@@ -1,6 +1,6 @@
 <?php
 
-namespace Scngnr\Mdent\Providers;
+namespace Scngnr\Mdent;
 
 use Illuminate\Support\ServiceProvider;
 

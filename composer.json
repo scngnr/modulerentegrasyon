@@ -10,7 +10,7 @@
     "extra": {
       "laravel": {
           "providers": [
-              "Scngnr\\Mdent\\src\\Scngnrproviders"
+              "Scngnr\\Mdent\\Scngnrproviders"
           ]
       }
   },
