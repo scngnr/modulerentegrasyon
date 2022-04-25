@@ -1,7 +1,7 @@
 <?php
 
 namespace Scngnr\Mdent\Binance\Helper;
-use Scngnr\Mdent\Binance\Helper\Bnexeption;
+use Scngnr\Mdent\Binance\Helper\Bnexception;
 
 Class Gateway {
 
@@ -30,7 +30,7 @@ Class Gateway {
     {
 
 		if (!isset($this->allowedServices[$name])) {
-			throw new Bnexeption("Geçersiz Yordam!");
+			throw new Bnexception("Geçersiz Yordam!");
 		}
 
 		if (isset($this->$name)) {

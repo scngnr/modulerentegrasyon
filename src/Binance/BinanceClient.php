@@ -1,22 +1,33 @@
 <?php
 
-namespace Scngnr\Mdent;
+namespace Scngnr\Mdent\Binance;
 use Scngnr\Mdent\Binance\Helper\Gateway;
 
 Class BinanceClient extends Gateway {
 
   /**
-  *
-  *Set apiKey and apiSecret
-  *
-  * @param string $apiKey
-  * @param string $apiSecret
-  */
+	 *
+	 * @description N11 Api Key
+	 * @param string $apiKey
+	 *
+	 */
+	public function setApiKey($apiKey)
+	{
 
-  public function setCredential ($apiKey, $apiSecret){
+		$this->apiKey = $apiKey;
 
-    $this->apiKey     = $apiKey;
-    $this->apiSecret  = $apiSecret;
+	}
 
-  }
+	/**
+	 *
+	 * @description N11 Api Şifre
+	 * @param string $apiPassword
+	 *
+	 */
+	public function setApiPassword($apiPassword)
+	{
+
+		$this->apiPassword = $apiPassword;
+
+	}
 }
