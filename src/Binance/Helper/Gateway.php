@@ -1,6 +1,7 @@
 <?php
 
 namespace Scngnr\Mdent\Binance\Helper;
+use Scngnr\Mdent\Binance\Helper\Bnexeption;
 
 Class Gateway {
 
@@ -18,4 +19,26 @@ Class Gateway {
     'usdm' => 'UsdMService'
   );
 
+  /**
+	 *
+	 * @description SOAP Api servislerinin ilk çağırma için hazırlanması
+	 * @param string
+	 * @return service
+	 *
+	 */
+    public function __get($name)
+    {
+
+		if (!isset($this->allowedServices[$name])) {
+			throw new Bnexeption("Geçersiz Yordam!");
+		}
+
+		if (isset($this->$name)) {
+			return $this->$name;
+		}
+
+		$this->$name = new BaseCall($this->allowedServices[$name], $this->apiKey, $this->apiPassword);
+		return $this->$name;
+
+    }
 }
