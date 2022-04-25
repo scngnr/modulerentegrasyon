@@ -46,12 +46,18 @@ class create extends Controller
       $parasutProductService = new \Scngnr\Mdent\FaturaEnt\Parasut\Http\Controllers\Product();
       $response = $parasutProductService->create($data);
 
-      if($Urunler[$i]->parasut == NULL){
+      if(array_key_exists('errors', json_decode($Urunler[$i]->parasut, 1))){
         $updateUrunler = Urunler::find($Urunler[$i]->id);
         $updateUrunler->parasut = json_encode($response);
-        $updateUrunler->update();
+
+
+        if(array_key_exists('errors', $response)){
+
+        }else{
+          $updateUrunler->update();
+        }
       }
-      sleep(1);
+      sleep(3);
     }
   }
 }

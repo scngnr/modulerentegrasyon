@@ -8,23 +8,20 @@ use Automattic\WooCommerce\Client;
 use Illuminate\Routing\Controller;
 use Scngnr\Mdent\PriceService\Models\priceService;
 use Illuminate\Support\Facades\Http;
+use Scngnr\Mdent\FaturaEnt\Parasut\Models\Parasut;
 
 class MusteriTedarikci extends Controller
 {
 
   public function __construct(){
 
-    $this->parasutCompanyId = "348340";
-    $this->baseEndPoint = "https://api.parasut.com/v4/{$this->parasutCompanyId}/contacts";
+    public function __construct(){
 
-    //Auth Kontroller sınıfını kullanarak access_token al
-    $controller = new \Scngnr\Mdent\FaturaEnt\Parasut\Http\Controllers\Auth();
-    $response = $controller->oAuthToken();
-    //$this->access_token = "w00U9BpQFcdCjfzSMAEdXkrdGrYvlObryFx17QaX2Vs";
-    $this->access_token = $response['access_token'];
+      $parasut = Parasut::find(1);
+      $this->parasutCompanyId = $parasut->firmaId;
+      $this->access_token = $parasut->accessToken;
 
-
-  }
+    }
 
   // Parasut sisteminde kayıtlı tüm ürünleri döndürür.
   public function index(){

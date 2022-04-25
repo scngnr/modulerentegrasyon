@@ -13,46 +13,40 @@ class ProductController extends Controller
 
     $urunler = Urunler::all();
 
-    try {
+    for ($i=0; $i < count($urunler); $i++) {
+      $woocommerce = new Client(
+        'http://scngnrtest.infinityfreeapp.com/',
+        'ck_3890365a7b810a9e26a02b4ffd7757da53cb49e9',
+        'cs_bcc21877f10b1f25b59fce1446674b02f75b020a',
+        [
+          'version' => 'wc/v3',
+        ]
+          );
 
-          for ($i=0; $i < count($urunler); $i++) {
-
-            $woocommerce = new Client(
-              'http://localhost/projeler/wordpress/',
-              'ck_b6056d6ae364654d91953bd3a22cd24db8455948',
-              'cs_c801c41f27f65c788b9cad7dddbe5bd8bcb1d16b',
+      $data = [
+          'name' => $urunler[$i]->adi,
+          'type' => 'simple',
+          'regular_price' => $urunler[$i]->fiyati,
+          'description' => $urunler[$i]->aciklama,
+          'short_description' => $urunler[$i]->aciklma,
+          'stock_quantity' => $urunler[$i]->stok,
+          'manage_stock' => true,
+          'categories' => [
               [
-                'version' => 'wc/v3',
+                  'id' => 9
+              ],
+              [
+                  'id' => 14
               ]
-                );
+          ],
+          'images' => [
+              [
+                  'src' => $urunler[$i]->resim
+              ]
+          ]
+      ];
 
-            $data = [
-                'name' => $urunler[$i]->adi,
-                'type' => 'simple',
-                'regular_price' => $urunler[$i]->fiyati,
-                'description' => $urunler[$i]->aciklama,
-                'short_description' => $urunler[$i]->aciklma,
-                'stock_quantity' => $urunler[$i]->stok,
-                'manage_stock' => true,
-                'categories' => [
-                    [
-                        'id' => 9
-                    ],
-                    [
-                        'id' => 14
-                    ]
-                ],
-                'images' => [
-                    [
-                        'src' => $urunler[$i]->resim
-                    ]
-                ]
-            ];
-
-            print_r($woocommerce->post('products', $data));
-          }
-    } catch (\Exception $e) {
-
+      print_r($woocommerce->post('products', $data));
     }
 
   }

@@ -8,6 +8,7 @@ use Automattic\WooCommerce\Client;
 use Illuminate\Routing\Controller;
 use Scngnr\Mdent\PriceService\Models\priceService;
 use Illuminate\Support\Facades\Http;
+use Scngnr\Mdent\FaturaEnt\Parasut\Models\Parasut;
 
 class Category extends Controller
 {
@@ -15,15 +16,9 @@ class Category extends Controller
 
   public function __construct(){
 
-    $this->parasutCompanyId = "348340";
-    //$this->baseEndPoint = "https://api.parasut.com/v4/348340" ;
-
-    //Auth Kontroller sınıfını kullanarak access_token al
-    $controller = new \Scngnr\Mdent\FaturaEnt\Parasut\Http\Controllers\Auth();
-    $response = $controller->oAuthToken();
-    //$this->access_token = "WjnfVvXPhAbho5aVgKnqvkIyOz-O8Mx4w99TlWUU3kM";
-    $this->access_token = $response['access_token'];
-
+    $parasut = Parasut::find(1);
+    $this->parasutCompanyId = $parasut->firmaId;
+    $this->access_token = $parasut->accessToken;
 
   }
   // Parasut sisteminde kayıtlı tüm kategorileri döndürür.

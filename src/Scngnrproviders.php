@@ -32,7 +32,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/PriceService/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/PriceService/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/PriceService/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/PriceService/views', 'priceService');
 
      /*
@@ -43,7 +43,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/Xmlentegrasyon/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/Xmlentegrasyon/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/Xmlentegrasyon/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/Xmlentegrasyon/views', 'priceService');
 
      /*
@@ -54,7 +54,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/FaturaEnt/Parasut/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/FaturaEnt/Parasut/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/FaturaEnt/Parasut/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/FaturaEnt/Parasut/views', 'priceService');
 
      /*
@@ -65,7 +65,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/CategoryService/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/CategoryService/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/CategoryService/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/CategoryService/views', 'priceService');
 
      /*
@@ -76,7 +76,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/ProductService/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/ProductService/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/ProductService/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/ProductService/views', 'priceService');
 
      /*
@@ -87,7 +87,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/FaturaEnt/InvoiceService/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/FaturaEnt/InvoiceService/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/FaturaEnt/InvoiceService/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/FaturaEnt/InvoiceService/views', 'priceService');
 
 
@@ -99,7 +99,7 @@ class Scngnrproviders extends ServiceProvider
      *
      */
      $this->loadMigrationsFrom(__DIR__ . '/CustomerService/Database/migrations');   //Database migration
-     $this->loadRoutesFrom(__DIR__.'/CustomerService/routes/web.php');              //Route
+     $this->loadRoutesFrom(__DIR__.'/CustomerService/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/CustomerService/views', 'priceService');
 
   }

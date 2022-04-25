@@ -8,19 +8,19 @@ use Automattic\WooCommerce\Client;
 use Illuminate\Routing\Controller;
 use Scngnr\Mdent\PriceService\Models\priceService;
 use Illuminate\Support\Facades\Http;
+use Scngnr\Mdent\FaturaEnt\Parasut\Models\Parasut;
 
 class Product extends Controller
 {
 
   public function __construct(){
 
-    $this->parasutCompanyId = "348340";
+    $parasut = Parasut::find(1);
+    $this->parasutCompanyId = $parasut->firmaId;
+    $this->access_token = $parasut->accessToken;
+
     $this->baseEndPoint = "https://api.parasut.com/v4/{$this->parasutCompanyId}/products";
 
-    //Auth Kontroller sınıfını kullanarak access_token al
-    $controller = new \Scngnr\Mdent\FaturaEnt\Parasut\Http\Controllers\Auth();
-    $response = $controller->oAuthToken();
-    $this->access_token = "BeUZd5KpqdOgO00MR6HQu7kNa_z-JBYqz_QvSbJ12vg";
     // $this->access_token = $response['access_token'];
 
 
@@ -29,15 +29,13 @@ class Product extends Controller
   // Parasut sisteminde kayıtlı tüm ürünleri döndürür.
   public function index(){
 
-    $endpoind = $this->baseEndPoint;
-
     $response = Http::withHeaders(
       [
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$this->access_token,
-      ])->get($endpoind);
+      ])->get($this->baseEndPoint);
 
-      return $response->json()  ;
+      return $response->json();
   }
 
   //Parasut sistemine yeni ürün kayıt etmek için kullanılacak metod
@@ -128,8 +126,8 @@ class Product extends Controller
   //Parasut kategori ürün ile kategori sil
   public function delete($id){
 
-    $endpoind = $this->baseEndPoint . '/' .$id;
-
+        ini_set('max_execution_time', '-1');
+    $endpoind = $this->baseEndPoint . '/' . $id;
     $response = Http::withHeaders(
       [
         'Accept' => 'application/json',

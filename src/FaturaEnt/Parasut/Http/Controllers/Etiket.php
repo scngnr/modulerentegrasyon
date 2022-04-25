@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 use Automattic\WooCommerce\Client;
 use Illuminate\Routing\Controller;
 use Scngnr\Mdent\PriceService\Models\priceService;
+use Scngnr\Mdent\FaturaEnt\Parasut\Models\Parasut;
 
 class Etiket extends Controller
 {
+  public function __construct(){
 
+    $parasut = Parasut::find(1);
+    $this->parasutCompanyId = $parasut->firmaId;
+    $this->access_token = $parasut->accessToken;
+
+  }
   // Parasut sisteminde kayıtlı tüm kategorileri döndürür.
   public function index(){
 

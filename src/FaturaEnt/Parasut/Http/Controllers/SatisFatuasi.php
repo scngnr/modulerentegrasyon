@@ -6,14 +6,21 @@ use App\Models\Urunler;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
+use Scngnr\Mdent\FaturaEnt\Parasut\Models\Parasut;
 
 class SatisFatuasi extends Controller
 {
 
+  public function __construct(){
 
+    $parasut = Parasut::find(1);
+    $this->parasutCompanyId = $parasut->firmaId;
+    $this->access_token = $parasut->accessToken;
+
+    $this->baseEndPoint = "https://api.parasut.com/v4/{$this->parasutCompanyId}/sales_invoices";
+  }
   public function __construct(){
     $this->parasutCompanyId = "348340";
-    $this->baseEndPoint = "https://api.parasut.com/v4/{$this->parasutCompanyId}/sales_invoices";
 
     //Auth Kontroller sınıfını kullanarak access_token al
     $controller = new \Scngnr\Mdent\FaturaEnt\Parasut\Http\Controllers\Auth();
@@ -25,68 +32,129 @@ class SatisFatuasi extends Controller
   // Parasut sisteminde kayıtlı tüm kategorileri döndürür.
   public function index(){
 
-   $endpoind = $this->baseEndPoint;
-
    $response = Http::withHeaders(
      [
        'Accept' => 'application/json',
        'Authorization' => 'Bearer '.$this->access_token,
-     ])->get($endpoind);
+     ])->get($this->baseEndPoint);
 
-     $response->json();
+    return $response->json();
   }
 
 
   public function create($array){
 
-    $endpoind = $this->baseEndPoint;
-
-
     $response = Http::withHeaders(
       [
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$this->access_token,
-      ])->post($endpoind, $array);
+      ])->post($this->baseEndPoint, $array);
 
     return  $response->json();
   }
 
 
-  public function show(){
+  public function show($id){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->get($this->baseEndPoint . '/' . $id);
+
+    return  $response->json();
   }
 
 
-  public function edit(){
+  public function edit($id, $array){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->put($this->baseEndPoint . '/' . $id, $array);
+
+
+      return  $response->json();
   }
 
 
-  public function delete(){
+  public function delete($id){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->delete($this->baseEndPoint . '/' . $id);
+
+    return  $response->json();
   }
 
-  public function pay(){
+  public function pay($id, $array){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->post($this->baseEndPoint . '/' . $id . '/payments', $array);
+
+
+      return  $response->json();
   }
 
-  public function cancel(){
+  public function cancel($id){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->delete($this->baseEndPoint . '/' . $id. '/cancel');
+
+
+      return  $response->json();
   }
 
-  public function recover(){
+  public function recover($id,$array){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->patch($this->baseEndPoint . '/' . $id . '/recover', $array);
+
+      return  $response->json();
   }
 
-  public function archive(){
+  public function archive($id){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->patch($this->baseEndPoint . '/' . $id . '/archive');
+
+      return  $response->json();
   }
 
-  public function unArchive(){
+  public function unArchive($id){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->patch($this->baseEndPoint . '/' . $id . '/unarchive');
+
+      return  $response->json();
   }
 
-  public function convertEstimateInvoice(){
+  public function convertEstimateInvoice($id, $array){
 
+    $response = Http::withHeaders(
+      [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$this->access_token,
+      ])->patch($this->baseEndPoint . '/' . $id . '/convert_to_invoice', $array);
+
+      return  $response->json();
   }
 }
