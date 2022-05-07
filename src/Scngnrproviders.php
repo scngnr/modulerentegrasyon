@@ -53,7 +53,7 @@ class Scngnrproviders extends ServiceProvider
      *-------------------------------------------------------------------------
      *
      */
-     $this->loadMigrationsFrom(__DIR__ . '/FaturaEnt/Parasut/Database/migrations');   //Database migration
+     // $this->loadMigrationsFrom(__DIR__ . '/FaturaEnt/Parasut/Database/migrations');   //Database migration
      $this->loadRoutesFrom(__DIR__.'/FaturaEnt/Parasut/Routes/web.php');              //Route
      $this->loadViewsFrom(__DIR__.'/FaturaEnt/Parasut/views', 'priceService');
 

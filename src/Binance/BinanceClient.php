@@ -11,23 +11,15 @@ Class BinanceClient extends Gateway {
 	 * @param string $apiKey
 	 *
 	 */
-	public function setApiKey($apiKey)
-	{
+	 public $apiKey;
 
-		$this->apiKey = $apiKey;
+	 public $apiSecret;
 
-	}
+	 public function __construct($apiKey,$apiSecret)
+	 {
 
-	/**
-	 *
-	 * @description N11 Api Şifre
-	 * @param string $apiPassword
-	 *
-	 */
-	public function setApiPassword($apiPassword)
-	{
+		 		$this->apiKey = $apiKey;
+				$this->apiSecret = $apiSecret;
+	 }
 
-		$this->apiPassword = $apiPassword;
-
-	}
 }
